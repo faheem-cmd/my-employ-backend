@@ -1,17 +1,21 @@
 const express = require("express");
 var app = express();
 var cors = require("cors");
+var mongoose = require("./database/mongoose");
 app.use(cors());
 require("dotenv").config();
 var bodyParser = require("body-parser");
 var swaggerJsdoc = require("swagger-jsdoc");
 var swaggerUi = require("swagger-ui-express");
-
+const router = require("./routes/router");
+app.use("/", router);
 const { success, error } = require("consola");
 const path = require("path");
 const http = require("http");
 const dbUrl = process.env.DB_URL || `mongodb://0.0.0.0:27017/${dbName}`;
 const server = http.createServer(app);
+
+mongoose(`mongodb://0.0.0.0:27017/${dbUrl}`);
 
 const options = {
   definition: {
