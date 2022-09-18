@@ -86,6 +86,7 @@ const login = async (req, res) => {
         status: "success",
         data: tokens,
         message: "Logged in successfully",
+        componen: "<div><Button>Click</Button></div>",
       });
     }
   });
